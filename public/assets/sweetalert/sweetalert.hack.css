@@ -1,0 +1,23 @@
+.sweet-alert {
+	box-shadow: 0 0 10px #333;
+	padding: 25px;
+}
+.sweet-alert h2 {
+	font: 600 20px OpenSans;
+	margin: 0;
+	margin-bottom: 5px;
+}
+.sweet-alert .btn-lg {
+	font: 600 15px OpenSans;
+	padding: 5px 15px;
+}
+.lead {
+	color: #000;
+	font-size: 17px;
+}
+.sa-confirm-button-container {
+	margin-left: 5px;
+}
+.sa-confirm-button-container .btn:focus {
+	box-shadow: none;
+}
