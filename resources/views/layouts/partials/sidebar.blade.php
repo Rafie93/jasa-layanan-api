@@ -19,7 +19,7 @@
                 <i class="ace-icon fa fa-users"></i>
             </button>
 
-            <button class="btn btn-danger">
+            <button class="btn btn-danger openChat">
                 <i class="ace-icon fa fa-comments-o"></i>
             </button>
         </div>
@@ -53,17 +53,45 @@
             <b class="arrow"></b>
         </li>
 
-        <li class="{{ (request()->segment(1) == 'order' ) ? 'active' : '' }}">
-            <a href="{{Route('order.order')}}">
+
+        <li class="{{ (request()->segment(1) == 'order' ) ? 'active open' : '' }}">
+            <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-shopping-cart"></i>
-                <span class="menu-text"> Ordering </span>
                 @php $orderCountRequest = count($orderQuery->getOrderRequest()); @endphp
                 @if ($orderCountRequest>0)
                     <span class="badge badge-danger">{{$orderCountRequest}}</span>
                 @endif
+                <span class="menu-text">
+                   Ordering
+                </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+            <ul class="submenu">
+                    <li class="{{ (request()->segment(2) == 'order' ) ? 'active' : '' }}">
+                        <a href="{{Route('order.order')}}">
+                            <span class="menu-text"> List Ordering </span>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'add' ) ? 'active' : '' }}">
+                        <a href="{{Route('order.order')}}">
+                            <span class="menu-text"> Buat Pesanan Baru </span>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+            </ul>
+        </li>
+
+        {{-- <li class="{{ (request()->segment(1) == 'payment' ) ? 'active' : '' }}">
+            <a href="{{Route('dashboard')}}">
+                <i class="menu-icon fa fa-money"></i>
+                <span class="menu-text"> Pembayaran </span>
+                <span class="badge badge-danger">5</span>
             </a>
             <b class="arrow"></b>
-        </li>
+        </li> --}}
 
         <li class="{{ (request()->segment(1) == 'invoice' ) ? 'active open' : '' }}">
             <a href="#" class="dropdown-toggle">
@@ -77,30 +105,20 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="{{ (request()->segment(2) == 'tunai' && request()->segment(1) == 'invoice' ) ? 'active' : '' }}">
-                    <a href="{{Route('products.index')}}"><i class="menu-icon fa fa-caret-right"></i>Invoice Tunai</a>
+                    <a href="{{Route('invoice.tunai')}}"><i class="menu-icon fa fa-caret-right"></i>Invoice Tunai</a>
                     <b class="arrow"></b>
                 </li>
 
                 <li class="{{ (request()->segment(2) == 'kredit' && request()->segment(1) == 'kredit') ? 'active' : '' }}">
-                    <a href="{{Route('products.add')}}"><i class="menu-icon fa fa-caret-right"></i>Invoice Kredit</a>
+                    <a href="{{Route('invoice.kredit')}}"><i class="menu-icon fa fa-caret-right"></i>Invoice Kredit</a>
                     <b class="arrow"></b>
                 </li>
 
                 <li class="{{ (request()->segment(2) == 'cod'  && request()->segment(1) == 'cod') ? 'active' : '' }}">
-                    <a href="{{Route('products.category')}}"> <i class="menu-icon fa fa-caret-right"></i> Invoice COD </a>
+                    <a href="{{Route('invoice.cod')}}"> <i class="menu-icon fa fa-caret-right"></i> Invoice COD </a>
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li>
-
-
-        <li class="{{ (request()->segment(1) == 'payment' ) ? 'active' : '' }}">
-            <a href="{{Route('dashboard')}}">
-                <i class="menu-icon fa fa-money"></i>
-                <span class="menu-text"> Pembayaran </span>
-                <span class="badge badge-danger">5</span>
-            </a>
-            <b class="arrow"></b>
         </li>
 
 
@@ -131,10 +149,10 @@
                 </li>
 
 
-                <li class="{{ (request()->segment(2) == 'promo'  && request()->segment(1) == 'products') ? 'active' : ''}}">
+                {{-- <li class="{{ (request()->segment(2) == 'promo'  && request()->segment(1) == 'products') ? 'active' : ''}}">
                     <a href="buttons.html"> <i class="menu-icon fa fa-caret-right"></i>Promo</a>
                     <b class="arrow"></b>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
@@ -176,18 +194,18 @@
                     <a href="{{Route('vendor.index')}}"><i class="menu-icon fa fa-caret-right"></i>Data Vendor</a>
                     <b class="arrow"></b>
                 </li>
-                <li class="">
+                {{-- <li class="">
                     <a href="buttons.html"> <i class="menu-icon fa fa-caret-right"></i> Order To Vendor </a>
                     <b class="arrow"></b>
                 </li>
                 <li class="">
                     <a href="buttons.html"> <i class="menu-icon fa fa-caret-right"></i> Payment To Vendor </a>
                     <b class="arrow"></b>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
-        <li class="">
+        {{-- <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-bar-chart"></i>
                 <span class="menu-text">
@@ -210,9 +228,9 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
-        <li class="">
+        {{-- <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-bar-chart"></i>
                 <span class="menu-text">
@@ -235,7 +253,7 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <li class="{{ (request()->segment(1) == 'master' ) ? 'active open' : '' }}">
             <a href="#" class="dropdown-toggle">
@@ -284,14 +302,6 @@
 
                 <li class="{{(request()->segment(2) == 'news') ? 'active' : ''}}">
                     <a href="{{Route('news.index')}}"><i class="menu-icon fa fa-caret-right"></i>News</a>
-                    <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <a href="typography.html"><i class="menu-icon fa fa-caret-right"></i>Slider</a>
-                    <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <a href="buttons.html"> <i class="menu-icon fa fa-caret-right"></i> Testimonial </a>
                     <b class="arrow"></b>
                 </li>
             </ul>

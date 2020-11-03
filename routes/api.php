@@ -15,15 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1','namespace' => 'Api', 'as' => 'api.'], function() {
+    Route::get('popiklan','PopiklanController@index')->name('iklan');
     Route::post('login', 'Account\LoginController@login')->name('login_member');
     Route::post('register', 'Account\RegisterController@register')->name('register');
+    Route::get('bank', 'Invoices\BankController@getBank');
     Route::get('banner', 'Beranda\BerandaController@getBanner');
     Route::get('category', 'Products\CategoryController@getCategorySub');
     Route::get('product', 'Products\ProductController@getProduct');
     Route::get('product/detail/{id}', 'Products\ProductController@getProductDetail');
 
     Route::get('product/comment/{id}', 'Products\ProductController@product_comment');
-    Route::get('bank', 'Invoice\InvoiceController@getBank');
 
 
 
@@ -53,6 +54,10 @@ Route::group(['prefix' => 'v1','namespace' => 'Api', 'as' => 'api.'], function()
 
         Route::get('invoice', 'Invoices\InvoiceController@getInvoice');
         Route::post('invoice/bayar', 'Invoices\InvoiceController@bayar');
+
+        Route::get('account', 'Account\ProfileController@getAccont');
+        Route::post('changepassword', 'Account\ProfileController@changepassword');
+
     });
 
 });

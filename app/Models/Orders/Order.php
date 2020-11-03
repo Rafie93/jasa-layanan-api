@@ -11,7 +11,7 @@ class Order extends Model
     protected $table="order";
     protected $fillable = ["code","date_order","customer_id","date_order","date_in_use","date_complete","date_deal","price_total","price_deal",
     "payment_method","notes_customer","notes_neopedia","invoice_id","status","creator_id","latitude","longitude","address_shipping"
-    ,"vendor_id","status_payment","potongan","sub_total","is_deal"];
+    ,"vendor_id","status_payment","potongan","sub_total","is_deal","date_proses","date_send"];
 
     public function customer()
     {

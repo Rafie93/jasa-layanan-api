@@ -26,11 +26,12 @@
 						<div class="login-container">
 							<div class="center">
 								<h1>
-									<i class="ace-icon fa fa-leaf green"></i>
-									<span class="red">Neopedia</span>
-									<span class="grey" id="id-text2">Application</span>
+                                    <img src="{{asset('images/logo_neo.png')}}" alt="">
+
+									{{-- <span class="red">Neopedia</span>
+									<span class="grey" id="id-text2">Application</span> --}}
 								</h1>
-								<h4 class="blue" id="id-company-text">&copy; PT Kalcom</h4>
+								{{-- <h4 class="blue" id="id-company-text">&copy; PT Kalcom</h4> --}}
 							</div>
 
 							<div class="space-6"></div>

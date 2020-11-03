@@ -28,6 +28,10 @@ class OrderController extends Controller
         $order = Order::where('id',$id)->first();
         $this->queryObject->update($request,$order);
         logUpdate(auth()->user()->id,'Konfirmasi Order ID : '.$order->code,'Order');
-        return redirect()->route('order.order')->with('sukses','Data Berhasil diperbaharui');
+        // if($request->status==3){
+        //     return redirect()->route('invoice.create',['id'=>$order->id])->with('sukses','Data Berhasil diperbaharui');
+        // }else{
+            return redirect()->route('order.order')->with('sukses','Data Berhasil diperbaharui');
+        // }
     }
 }

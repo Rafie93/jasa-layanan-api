@@ -39,4 +39,11 @@ class ProfileController extends Controller
         }
 
     }
+    public function getAccount(Request $request)
+    {
+        $user = Auth::user();
+        return response()->json(
+            new UserResource($user)
+        , 200);
+    }
 }

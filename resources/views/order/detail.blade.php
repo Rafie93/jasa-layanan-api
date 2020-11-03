@@ -12,7 +12,7 @@
 <div class="clearfix"></div>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#detail" data-toggle="tab">Detail Order</a></li>
-    <li><a href="#pengiriman" data-toggle="tab">Alamat Pengiriman</a></li>
+    {{-- <li><a href="#pengiriman" data-toggle="tab">Alamat Pengiriman</a></li> --}}
 
 </ul>
 <div class="tab-content">

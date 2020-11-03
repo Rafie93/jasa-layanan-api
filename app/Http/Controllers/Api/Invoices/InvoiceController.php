@@ -59,8 +59,5 @@ class InvoiceController extends Controller
         }
     }
 
-    public function getBank(Request $request)
-    {
-        # code...
-    }
+   
 }

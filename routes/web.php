@@ -18,6 +18,7 @@ Route::get('/login','Auth\LoginController@index')->name('login');
 Route::post('/postlogin','Auth\LoginController@postlogin')->name('login.post');
 Route::get('/logout','Auth\LoginController@logout')->name('logout');
 Route::get('/','Auth\LoginController@index')->name('logon');
+Route::get('/firebase','Firebase\FirebaseController@index');
 
 Route::get('/test', function () {
     return view('master.o.test');
@@ -80,9 +81,52 @@ Route::group(['middleware' => 'auth'], function(){
      * Order Routes
      */
 
+
     Route::get('order/order', ['as' => 'order.order', 'uses' => 'Order\OrderController@request']);
     Route::get('order/{id}/detail', ['as' => 'order.detail', 'uses' => 'Order\OrderController@detail']);
     Route::post('order/{id}/update', ['as' => 'order.update', 'uses' => 'Order\OrderController@update']);
+
+    //* Invoice
+    Route::get('invoice/tunai', ['as' => 'invoice.tunai', 'uses' => 'Invoice\InvoiceController@tunai']);
+    Route::get('invoice/detail', ['as' => 'invoice.detail', 'uses' => 'Invoice\InvoiceController@detail']);
+    Route::get('invoice/print/{id}', ['as' => 'invoice.print', 'uses' => 'Invoice\InvoiceController@print']);
+
+    Route::get('invoice/cod/create', ['as' => 'invoice.cod.create', 'uses' => 'Invoice\InvoiceController@createCod']);
+    Route::get('invoice/cod', ['as' => 'invoice.cod', 'uses' => 'Invoice\InvoiceController@cod']);
+    Route::get('invoice/cod/add', ['as' => 'invoice.cod.add', 'uses' => 'Invoice\InvoiceController@addCod']);
+    Route::get('invoice/cod/bayar', ['as' => 'invoice.cod.bayar', 'uses' => 'Rates\PaymentController@addCod']);
+
+
+    Route::get('invoice/kredit', ['as' => 'invoice.kredit', 'uses' => 'Invoice\InvoiceController@kredit']);
+    Route::get('invoice/tunai/lihat', ['as' => 'invoice.tunai.lihat', 'uses' => 'Invoice\InvoiceController@addTunai']);
+    Route::get('invoice/kredit/lihat', ['as' => 'invoice.kredit.lihat', 'uses' => 'Invoice\InvoiceController@addTunai']);
+
+    Route::get('invoice/tunai/create', ['as' => 'invoice.tunai.create', 'uses' => 'Invoice\InvoiceController@createTunai']);
+    Route::get('invoice/tunai/add', ['as' => 'invoice.tunai.add', 'uses' => 'Invoice\InvoiceController@addTunai']);
+
+    Route::get('invoice/kredit/create', ['as' => 'invoice.kredit.create', 'uses' => 'Invoice\InvoiceController@createKredit']);
+    Route::get('invoice/kredit/add', ['as' => 'invoice.kredit.add', 'uses' => 'Invoice\InvoiceController@addKredit']);
+
+    Route::get('invoice/kredit/customer', ['as' => 'invoice.kredit.customer', 'uses' => 'Invoice\InvoiceController@createKreditCustomer']);
+    Route::get('invoice/tunai/customer', ['as' => 'invoice.tunai.customer', 'uses' => 'Invoice\InvoiceController@createTunaiCustomer']);
+    Route::get('invoice/cod/customer', ['as' => 'invoice.cod.customer', 'uses' => 'Invoice\InvoiceController@createCodCustomer']);
+
+    Route::post('invoice/tunai/store', ['as' => 'invoice.tunai.store', 'uses' => 'Invoice\InvoiceController@store_tunai']);
+    Route::post('invoice/kredit/store', ['as' => 'invoice.kredit.store', 'uses' => 'Invoice\InvoiceController@store_kredit']);
+    Route::post('invoice/cod/store', ['as' => 'invoice.cod.store', 'uses' => 'Invoice\InvoiceController@store_cod']);
+
+    Route::post('invoice/tunai/customer/store', ['as' => 'invoice.tunai.customer.store', 'uses' => 'Invoice\InvoiceController@store_tunai_customer']);
+    Route::post('invoice/kredit/customer/store', ['as' => 'invoice.kredit.customer.store', 'uses' => 'Invoice\InvoiceController@store_kredit_customer']);
+    Route::post('invoice/cod/customer/store', ['as' => 'invoice.cod.customer.store', 'uses' => 'Invoice\InvoiceController@store_cod_customer']);
+
+    Route::get('invoice/kredit/bayar', ['as' => 'invoice.kredit.bayar', 'uses' => 'Rates\PaymentController@add']);
+    Route::get('invoice/kredit/mail', ['as' => 'invoice.kredit.mail', 'uses' => 'Invoice\InvoiceController@sendToEmail']);
+
+    Route::post('invoice/kredit/payment', ['as' => 'invoice.kredit.payment', 'uses' => 'Rates\PaymentController@store']);
+    Route::post('invoice/cod/payment', ['as' => 'invoice.cod.payment', 'uses' => 'Rates\PaymentController@storeCod']);
+
+
+    //end e=invoice
 
     // Inbox Route
     Route::get('inbox/index', ['as' => 'inbox.index', 'uses' => 'Inbox\InboxController@index']);

@@ -41,6 +41,19 @@ class OrderQuery
     }
     public function update($request, $order)
     {
+        $status = $request->status;
+        if($status==3){
+            $request->merge(['date_deal'=>$request->date]);
+        }else if($status==4){
+            $request->merge(['date_proses'=>$request->date]);
+        }
+        else if($status==44){
+            $request->merge(['date_send'=>$request->date]);
+        }
+        else if($status==7){
+            $request->merge(['date_complete'=>$request->date]);
+        }
+
         $order->update($request->all());
     }
 

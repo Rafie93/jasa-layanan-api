@@ -36,7 +36,7 @@
                         @if($customer->npwp!=null)<br>{{"NPWP :".$customer->npwp}} @endif</td>
                     <td >{{ $customer->isCategory() }}</td>
                     <td >{{ 'Code : '.$customer->code}}<br>{{'Ref Code : '.$customer->user->ref_code }}</td>
-                    <td> {{$customer->isCity->name}}<br>
+                    <td> @if($customer->orig_city_id!=null){{$customer->isCity->name}} <br> @endif
                         @if($customer->orig_district_id!=null){{$customer->isDistrict->name}} @endif
                     </td>
                     <td >{{  "Nama :".$customer->name_customer}}
