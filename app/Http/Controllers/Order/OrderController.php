@@ -18,11 +18,18 @@ class OrderController extends Controller
     {
         return view('order.index');
     }
+
+    public function add(Request $request)
+    {
+        return view('order.add');
+    }
+
     public function detail(Request $request,$code)
     {
         $order = Order::where('code',$code)->first();
         return view('order.detail',compact('order'));
     }
+
     public function update(Request $request,$id)
     {
         $order = Order::where('id',$id)->first();

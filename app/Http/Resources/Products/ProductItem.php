@@ -5,6 +5,7 @@ namespace App\Http\Resources\Products;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Products\ProductPrice;
 use App\Models\Products\Category;
+use App\Models\Vendors\Vendor;
 class ProductItem extends JsonResource
 {
     /**
@@ -38,7 +39,8 @@ class ProductItem extends JsonResource
             'category_name' => $this->resource->category->name,
             'category_parent_id' => $category_parent_id,
             'category_parent_name' => $category_parent,
-            'variant' => ProductPrice::where('product_id',$this->resource->id)->get()
+            'variant' => ProductPrice::where('product_id',$this->resource->id)->get(),
+            'vendor' => $this->resource->vendor_id!=null ? Vendor::find($this->resource->vendor_id)->first() : null
         ];
     }
 }

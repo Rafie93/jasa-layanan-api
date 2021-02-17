@@ -83,6 +83,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('order/order', ['as' => 'order.order', 'uses' => 'Order\OrderController@request']);
+    Route::get('order/add', ['as' => 'order.add', 'uses' => 'Order\OrderController@add']);
+
     Route::get('order/{id}/detail', ['as' => 'order.detail', 'uses' => 'Order\OrderController@detail']);
     Route::post('order/{id}/update', ['as' => 'order.update', 'uses' => 'Order\OrderController@update']);
 

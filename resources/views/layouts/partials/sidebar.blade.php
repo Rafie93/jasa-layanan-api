@@ -76,7 +76,7 @@
                         <b class="arrow"></b>
                     </li>
                     <li class="{{ (request()->segment(2) == 'add' ) ? 'active' : '' }}">
-                        <a href="{{Route('order.order')}}">
+                        <a href="{{Route('order.add')}}">
                             <span class="menu-text"> Buat Pesanan Baru </span>
                         </a>
                         <b class="arrow"></b>
